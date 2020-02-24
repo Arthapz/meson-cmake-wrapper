@@ -49,6 +49,9 @@ class NinjaBackend:
             # base_dirname = os.path.basename(os.path.dirname(target_filename))
             # base_filename = os.path.basename(target_filename)
             # return os.path.join(base_dirname, base_filename)
-            return target['name']
+            if self.meson.get_version()[1] >= 52:
+                return target['name'][0]
+            else:
+                return target['name']
 
         return target_name
